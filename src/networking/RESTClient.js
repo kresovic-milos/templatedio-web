@@ -1,18 +1,41 @@
 import axios from 'axios'
-import { ROOT } from './Urls'
 
 const DEBUG = false
+
+const ROOT = "http://imagewizard.azurewebsites.net/api/"
 
 let instance = axios.create({
   baseURL: ROOT,
   timeout: 5000,
   headers: {'Accept': 'application/json'}
 })
-instance.defaults.headers.common['Content-Type'] = 'application/json'
 
-export const get = (url, params) => {
+export const fireRequest = (httpMethod, url, params, headers) => {
+
+  instance.defaults.headers = headers
+
   logRequest(url, params)
-  return instance.get(url, {data: params})
+
+  switch (httpMethod) {
+    case 'GET':
+      get(url, params)
+      break;
+    case 'POST':
+      post(url, params)
+      break;
+    case 'PUT':
+      put(url, params)
+      break;
+    case 'DELETE':
+      deleteOne(url)
+      break;
+    default:
+      break;
+  }
+}
+
+const get = (url, params) => {
+ return instance.get(url, {data: params})
   .then(response => {
         var parsedResp = response.data !== undefined && response.data.content !== undefined ? response.data.content : response.data
         
@@ -24,11 +47,10 @@ export const get = (url, params) => {
   //   callback(json !== undefined && json.content !== undefined ? json.content : json)
   // }).catch(function(ex) {
   //   console.log('parsing failed ', ex.message)
-  // });
+  // }); 
 }
 
-export const post = (url, params) => {
-  logRequest(url, params)
+const post = (url, params) => {
   return instance.post(url, params)
   .then(response => {
         var parsedResp = response.data
@@ -37,8 +59,7 @@ export const post = (url, params) => {
   })
 }
 
-export const put = (url, params) => {
-  logRequest(url, params)
+const put = (url, params) => {
   return instance.put(url, params)
   .then(response => {
         var parsedResp = response.data
@@ -47,8 +68,7 @@ export const put = (url, params) => {
   })
 }
 
-export const deleteOne = (url) => {
-  logRequest(url, params)
+const deleteOne = (url) => {
   return instance.delete(url)
   .then(response => {
       logResponse(response)
@@ -56,11 +76,11 @@ export const deleteOne = (url) => {
   })
 }
 
-logRequest(url, params) {
+const logRequest = (url, params) => {
   DEBUG && console.log("url " + url)
   DEBUG && console.log(JSON.stringify(params))
 }
 
-logResponse(reponse) {
+const logResponse = (response) => {
   DEBUG && console.log("http status " + response.status)
 }

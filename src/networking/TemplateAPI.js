@@ -1,9 +1,7 @@
 import * as RESTClient from './RESTClient'
 
-const ROOT = "http://imagewizard.azurewebsites.net/api/"
-
-const UPLOAD = ROOT + "upload"
-export const uploadTemplate = (file) => RESTClient.post(UPLOAD, file)
+const UPLOAD = "upload"
+export const uploadTemplate = (file) => RESTClient.fireRequest('POST', UPLOAD, {'file': file}, {'Content-Type':'multipart/form-data'})
 
 const LIST_LAYERS = "process/listLayers"
-export const listLayers = (id) => RESTClient.get(LIST_LAYERS, id)
+export const listLayers = (id) => RESTClient.fireRequest('GET', LIST_LAYERS, {'id': id}, {'Content-Type':'application/json'})

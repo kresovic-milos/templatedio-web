@@ -15,7 +15,7 @@ class Home extends Component {
               <p className="lead">
                 <Button color="info" size="lg">Learn More</Button>
                 {' '}
-                <Link to="/getStarted"><Button color="primary" size="lg">Get Started</Button></Link>
+                <Link to="/wizard"><Button color="primary" size="lg">Get Started</Button></Link>
               </p>
             </Jumbotron>
           </Col>
