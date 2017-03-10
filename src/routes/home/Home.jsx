@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Jumbotron, Button } from 'reactstrap'
+import { Link } from 'react-router'
 
 class Home extends Component {
   render() {
@@ -14,7 +15,7 @@ class Home extends Component {
               <p className="lead">
                 <Button color="info" size="lg">Learn More</Button>
                 {' '}
-                <Button color="primary" size="lg">Get Started</Button>
+                <Link to="/getStarted"><Button color="primary" size="lg">Get Started</Button></Link>
               </p>
             </Jumbotron>
           </Col>

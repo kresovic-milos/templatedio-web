@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <Container>
         <AppBar/>
-        <Home/>
+        {this.props.children}
       </Container>
     )
   }
