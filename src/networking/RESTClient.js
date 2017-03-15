@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const DEBUG = false
+const DEBUG = true
 
 const ROOT = "http://imagewizard.azurewebsites.net/api/"
 
 let instance = axios.create({
   baseURL: ROOT,
-  timeout: 5000,
+  timeout: 25000,
   headers: {'Accept': 'application/json'}
 })
 
@@ -18,17 +18,13 @@ export const fireRequest = (httpMethod, url, params, headers) => {
 
   switch (httpMethod) {
     case 'GET':
-      get(url, params)
-      break;
+      return get(url, params)
     case 'POST':
-      post(url, params)
-      break;
+      return post(url, params)
     case 'PUT':
-      put(url, params)
-      break;
+      return put(url, params)
     case 'DELETE':
-      deleteOne(url)
-      break;
+      return deleteOne(url)
     default:
       break;
   }

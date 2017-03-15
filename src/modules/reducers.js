@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import reducer_step from './wizard/reducers/reducer_step'
+import { currentStep, template } from './wizard/reducers/reducer_wizard'
 
 const appReducers = combineReducers({
-  reducer_step,
+  currentStep, template,
   routing: routerReducer
 })
 

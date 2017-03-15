@@ -5,13 +5,16 @@ import ReactDOM from 'react-dom';
 var fabricCanvas = new fabric.Canvas();
 
 class GraphicEditor extends Component {
+
     componentDidMount() {
+        
         var el = ReactDOM.findDOMNode(this);
         // Here we have the canvas so we can initialize fabric
         fabricCanvas.initialize(el, {
             height: 300,
             width: 300,
         });
+
         fabricCanvas.add(new fabric.Circle({
             radius: 50,
             originX: 'center',
@@ -20,6 +23,7 @@ class GraphicEditor extends Component {
             top: fabricCanvas.height / 2,
             left: fabricCanvas.width / 2,
         }));
+
         var text = new fabric.IText("Hello world", {
             top: 20,
             left: 12,
@@ -30,6 +34,7 @@ class GraphicEditor extends Component {
             fontFamily: 'Tahoma',
             color:'#000'
         });
+
         fabricCanvas.add(text);
         fabricCanvas.setActiveObject(fabricCanvas.getObjects()[0]);
     }

@@ -12,6 +12,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import Home from './routes/home/Home'
 import Wizard from './routes/wizard/containers/Wizard'
 import ChooseTemplate from './routes/wizard/components/ChooseTemplate'
+import ChooseLayers from './routes/wizard/components/ChooseLayers'
 import ChooseDataSource from './routes/wizard/components/ChooseDataSource'
 
 const store = configureStore()
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Route path="/wizard" component={Wizard}>
         <IndexRedirect to="/chooseTemplate" />
         <Route path="/chooseTemplate" component={ChooseTemplate}/>
+        <Route path="/chooseLayers" component={ChooseLayers}/>
         <Route path="/chooseDataSource" component={ChooseDataSource}/>
       </Route>
     </Route>

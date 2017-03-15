@@ -1,10 +1,11 @@
 export const Steps = {
-  CHOOSE_TEMPLATE: 0,
-  CHOOSE_DATA_SOURCE: 1,
-  BIND: 2,
-  FINISH: 3
+  CHOOSE_TEMPLATE: { index: 0, path:'/chooseTemplate' },
+  CHOOSE_LAYERS: { index: 1, path:'/chooseLayers' },
+  CHOOSE_DATA_SOURCE: { index: 2, path:'/chooseDataSource' },
+  BIND: { index: 3, path:'' },
+  FINISH: { index: 4, path:'' }
 }
 
 export function getStepColor(step, currentStep) {
-  return step === currentStep ? "primary" : "info"
+  return step.index === currentStep.index ? "primary" : "info"
 }

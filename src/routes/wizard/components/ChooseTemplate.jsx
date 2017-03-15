@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router'
-import TemplateAPI from '../../../networking/TemplateAPI'
 import { connect } from 'react-redux'
-import { setStep } from '../../../modules/wizard/actions/actions'
+import { setStep, uploadTemplate } from '../../../modules/wizard/actions/actions'
 
 import { Steps } from '../../../utils/ConstantsWizard'
 
@@ -21,7 +20,7 @@ class ChooseTemplate extends Component {
     this.props.dispatch(setStep(Steps.CHOOSE_TEMPLATE))
   }
 
-  onDrop(acceptedFiles, rejectedFiles) {    
+  onDrop(acceptedFiles, rejectedFiles) {  
     console.log('Accepted files: ', acceptedFiles)
     console.log('Rejected files: ', rejectedFiles)
 
@@ -31,15 +30,10 @@ class ChooseTemplate extends Component {
   }
 
   upload() {
-
-    // TemplateAPI.uploadTemplate(this.state.files[0])
-
-    this.props.router.push('/chooseDataSource')
+    this.props.dispatch(uploadTemplate(this.state.files[0]))    
   }
 
   render() {
-
-  console.log('files: ', this.state.files)
 
     return (
 

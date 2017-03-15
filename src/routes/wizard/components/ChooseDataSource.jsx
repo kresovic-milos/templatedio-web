@@ -17,7 +17,6 @@ class ChooseDataSource extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(setStep(Steps.CHOOSE_DATA_SOURCE))
   }
 
   onDrop(acceptedFiles, rejectedFiles) {    
